@@ -166,3 +166,16 @@ GO
 INSERT INTO Reports (ReportName, ReportType, GeneratedAt, IsActive, CreatedBy) VALUES
 ('Reporte de Ventas Enero 2025', 'Ventas', GETDATE(), 1, 1);
 GO
+
+
+--creando un usuario demo
+USE master;
+GO
+CREATE LOGIN pos_user WITH PASSWORD = 'TuPasswordFuerte';
+GO
+USE POS_system;
+GO
+CREATE USER pos_user FOR LOGIN pos_user;
+GO
+ALTER ROLE db_owner ADD MEMBER pos_user;
+GO

@@ -1,12 +1,12 @@
 const sql = require('mssql');
-//mejora: agregar variables de entorno .ENV
+
 const config = {
-  user: 'sa', 
-  password: 'sebastian0399', 
-  server: 'DDC-CO-SCastro', 
-  database: 'POS_system', 
+  server: 'SEBASPC', 
+  database: 'POS_system',
+  user: 'pos_user',
+  password: 'TuPasswordFuerte',
   options: {
-    encrypt: true, 
+    encrypt: false, 
     trustServerCertificate: true 
   }
 };
@@ -14,14 +14,11 @@ const config = {
 async function connectDB() {
   try {
     await sql.connect(config);
-    console.log('Conexión exitosa a la base de datos');
-
-    // Verificación adicional con una consulta simple
-    const result = await sql.query('SELECT 1 AS TestConnection');
-    console.log('Consulta exitosa:', result.recordset);
+    console.log('✅ Conexión exitosa');
   } catch (error) {
-    console.error('Error en la conexión a la base de datos:', error);
+    console.error('❌ Error en la conexión:', error);
   }
 }
 
 module.exports = { sql, connectDB };
+
